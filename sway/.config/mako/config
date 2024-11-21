@@ -7,3 +7,6 @@ progress-color=over #363a4f
 
 [urgency=high]
 border-color=#f5a97f
+
+# Fonts
+font=JetBrainsMonoNerd 14
