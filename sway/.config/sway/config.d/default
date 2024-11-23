@@ -29,11 +29,15 @@ set $powermenu ~/.config/sway/scripts/power_menu.sh
 #exec swayidle idlehint 1
 #exec_always swayidle -w before-sleep "$lock"
 #set $lock swaylock -C ~/.config/swaylock/config
+#
+# exec swayidle -w \
+#           timeout 60 '$HOME/.config/sway/scripts/lock.sh' \
+#           before-sleep '$HOME/.config/sway/scripts/lock.sh'
 
 exec swayidle -w \
-          timeout 60 '$HOME/.config/sway/scripts/lock.sh' \
-          before-sleep '$HOME/.config/sway/scripts/lock.sh'
-
+		timeout 60 'swaylock -f' \
+		timeout 120 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+		before-sleep 'swaylock -f'
 
 ### Manual Lock
 bindsym --release $mod+Control+s exec '$HOME/.config/sway/scripts/lock.sh'
